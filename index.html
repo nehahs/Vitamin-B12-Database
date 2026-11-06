@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vitamin B12 Database</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="banner" class="mt-6 mb-6 d-flex justify-content-between align-items-center">
+        <div class="text-left">
+            <h1 style="margin-bottom: 0px;"> CobVar </h1>
+            <h5 style="margin-top: 0px;"> A Vitamin B<sub>12</sub> associated genetic variants database</h5>
+        </div>
+        <div class="text-right">
+            <a href="https://www.sjri.res.in/" target="_blank">
+                <img src="https://sjri.res.in/images/logo.png" alt="Company Logo">
+                <p class="text">St. John's <br> Research Institute</p>
+            </a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div id="aboutUs" class="mt-3">
+                    <div id="aboutUsTitle" class="mb-3">About Us</div>
+                    <p>
+                       CobVar is a comprehensive resource of genetic variants associated with 6 different Vitamin B<sub>12</sub> Database related traits including circulating Serum/Plasma Vitamin B<sub>12</sub> levels, Holotranscobalamin, Holohaptocorrin, Methylmalonic acid (MMA), and Homocysteine, manually curated from studies conducted across multiple ethnicities and geographies. 
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div id="dataStatistics" class="side-by-side1 mt-3">
+                    <h5>Data Statistics :</h5>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <tbody>
+                                <tr>
+                                    <td>Last Updated</td>
+                                    <td>30th Sept, 2024.</td>
+                                </tr>
+                                <tr>
+                                    <td>No. of Publications</td>
+                                    <td>47</td>
+                                </tr>
+                                <tr>
+                                    <td>No. of Genes</td>
+                                    <td>84</td>
+                                </tr>
+                                <tr>
+                                    <td>No. of DBSNP IDs</td>
+                                    <td>222</td>
+                                </tr>
+                                <tr>
+                                <td>No. of Associations</td>
+                                <td>324</td></tr>
+                                <tr>
+                                <tr>
+                                    <td>No. of Phenotypes</td>
+                                    <td>5</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8">
+                <form id="searchForm" class="mt-3 d-flex">
+                    <input type="text" id="query" class="form-control" placeholder="DBSNP ID / Phenotype or Trait / Variant / Gene">
+                    <button type="submit" class="btn btn-primary ml-2">Search</button>
+                </form>
+            </div>
+            <div class="col-md-4">
+                <div id="userManual">
+                   
+    <a href="C:\xampp\htdocs\Vitamin B12 Database User Manual.pdf" target="_blank">
+        <div class="user-manual-box">
+            
+            <h5>User Manual : Click to view</h5>
+            
+        </div>
+    </a>
+</div>
+                </div>
+
+            </div>
+         <div id="intermediateResults" style="display: none;">
+            <div id="intermediateResultstitle">
+                <h4>Please find the results for your query below:</h4>
+            </div>
+            <p id="resultCount"></p>
+            <label for="resultsPerPage">Results per page:</label>
+            <select id="resultsPerPage" name="resultsPerPage">
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="30">30</option>
+            </select>
+            <table id="intermediateResultsTable" class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>DBSNP ID</th>
+                        <th>Phenotype/Trait</th>
+                        <th>Variant</th>
+                        <th>Gene</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="intermediateResultsContainer"> </tbody>
+            </table>
+            <div id="pagination"></div>
+        </div>
+       <div class="container2">
+    <div class="row">
+        <!-- Example Search and Contact Us Sections -->
+        <div class="col-md-7">
+            <div id="exampleSearch" class="side-by-side2">
+                <h4 class="card-title">Example Search :</h4>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Field</th>
+                                <th>Example 1</th>
+                                <th>Example 2</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>DBSNP ID</td>
+                                <td><span class="badge badge-pill badge-secondary example-value" onclick="searchValue('rs602662')">rs602662</span></td>
+                                <td><span class="badge badge-pill badge-secondary example-value" onclick="searchValue('rs1005887')">rs1005887</span></td>
+                            </tr>
+                            <tr>
+                                <td>Phenotype/Trait</td>
+                                <td><span class="badge badge-pill badge-secondary example-value" onclick="searchValue('HoloTC')">HoloTC</span></td>
+                                <td><span class="badge badge-pill badge-secondary example-value" onclick="searchValue('Total B12')">Total B12</span></td>
+                            </tr>
+                            <tr>
+                                <td>Variant</td>
+                                <td><span class="badge badge-pill badge-secondary example-value" onclick="searchValue('2:190319749')">2:190319749</span></td>
+                                <td><span class="badge badge-pill badge-secondary example-value" onclick="searchValue('19:48703417')">19:48703417</span></td>
+                            </tr>
+                            <tr>
+                                <td>Gene</td>
+                                <td><span class="badge badge-pill badge-secondary example-value" onclick="searchValue('TcblR')">TcblR</span></td>
+                                <td><span class="badge badge-pill badge-secondary example-value" onclick="searchValue('FUT2')">FUT2</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="contactUs" class="mt-4">
+                <div class="contact-us-box">
+                    <h5>Contact Us</h5>
+                    <p>If you have any questions or need assistance, feel free to reach out to us:</p>
+                    <ul>
+                        <li>100 Feet Rd, John Nagar, Koramangala,</li>
+                        <li>Bengaluru, Karnataka 560034.</li>
+                        <li><a href="mailto:ambily.s@sjri.res.in">ambily.s@sjri.res.in</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts Section -->
+        <div class="col-md-5">
+            <div id="phenotype-chart" class="side-by-side2">
+                <div class="card-body">
+                    <h5 class="card-title">Phenotype Classification :</h5>
+                    <canvas id="phenotypePieChart" width="200" height="200"></canvas>
+                </div>
+            </div>
+
+            <div id="gene-chart" class="side-by-side2" style="display: none;">
+                <div class="card-body">
+                    <h5 class="card-title">Gene Composition :</h5>
+                    <canvas id="genePieChart" width="200" height="200"></canvas>
+                    <button id="backToPhenotype">Back</button>
+                </div>
+            </div>
+
+            <div class="spinner" id="spinner"></div>
+        </div>
+    </div>
+</div>
+
+    </div>
+
+
+          
+    
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+
+    <script>
+    $(document).ready(function() {
+    let currentPage = 1;
+    let resultsPerPage = 5;
+    let totalResults = 0;
+
+    function fetchResults(page = 1, resultsPerPage = 5) {
+        let query = $('#query').val();
+        $.getJSON('http://localhost/search.php', { query: query, page: page, resultsPerPage: resultsPerPage }, function(data) {
+            $('#intermediateResultsContainer').empty();
+            $('#pagination').empty();
+            $('#resultCount').text(`Number of results: ${data.count}`);
+            totalResults = data.count;
+
+            // Display results
+            data.results.forEach(record => {
+                let $row = $('<tr></tr>');
+                $row.append(`<td>${record['DBSNP id']}</td>`);
+                $row.append(`<td>${record['Phenotype/Trait'] || 'N/A'}</td>`);
+                $row.append(`<td>${record['Variant'] || 'N/A'}</td>`);
+                $row.append(`<td>${record['Gene'] || 'N/A'}</td>`);
+
+                let $viewDetailsButton = $('<button></button>').addClass('btn btn-info').text('View Details');
+                $viewDetailsButton.on('click', function() {
+                    const encodedQuery = encodeURIComponent(query);
+                    const encodedDBSNP = encodeURIComponent(record['DBSNP id']);
+                    const encodedGene = encodeURIComponent(record['Gene']);
+                    const encodedPhenotype = encodeURIComponent(record['Phenotype/Trait']);
+                    const encodedVariant = encodeURIComponent(record['Variant']);
+
+                    const url = `details.html?query=${encodedQuery}&dbsnp=${encodedDBSNP}&Gene=${encodedGene}&PhenotypeTrait=${encodedPhenotype}&Variant=${encodedVariant}`;
+                    window.open(url);
+                });
+
+                $row.append($('<td></td>').append($viewDetailsButton));
+                $('#intermediateResultsContainer').append($row);
+            });
+
+            // Pagination logic
+            let totalPages = Math.ceil(totalResults / resultsPerPage);
+            if (totalPages > 1) {
+                for (let i = 1; i <= totalPages; i++) {
+                    let $pageButton = $('<button></button>').addClass('btn btn-light').text(i);
+                    if (i === page) {
+                        $pageButton.addClass('active'); // Highlight the current page
+                    }
+                    $pageButton.on('click', function() {
+                        fetchResults(i, resultsPerPage);
+                    });
+                    $('#pagination').append($pageButton);
+                }
+            }
+        });
+    }
+
+    $('#searchForm').submit(function(event) {
+        event.preventDefault();
+        currentPage = 1;
+        fetchResults(currentPage, resultsPerPage);
+        $('#intermediateResults').show();
+    });
+
+    $('#resultsPerPage').change(function() {
+        resultsPerPage = parseInt($(this).val());
+        currentPage = 1;
+        fetchResults(currentPage, resultsPerPage);
+    });
+
+    fetchResults(currentPage, resultsPerPage);
+});
+
+function searchValue(value) {
+    $('#query').val(value);
+    $('#searchForm').submit();
+}
+
+let geneChartInstance = null;
+
+// Function to show the spinner
+function showSpinner() {
+    document.getElementById('spinner').style.display = 'block';
+}
+
+// Function to hide the spinner
+function hideSpinner() {
+    document.getElementById('spinner').style.display = 'none';
+}
+
+// Function to fetch and render phenotype pie chart
+async function fetchAndRenderPhenotypeChart() {
+    try {
+        const response = await fetch('http://localhost/fetch_phenotype.php');
+        const data = await response.json();
+
+        const labels = data.map(item => item.phenotype);
+        const counts = data.map(item => item.count);
+
+        const ctx = document.getElementById('phenotypePieChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: labels,
+                datasets: [{
+                    data: counts,
+                    backgroundColor: [
+                        '#f95d6a','#d45087', '#a05195', '#665191', '#ffa600', '#ff7c43', '#2f4b7c', 
+                    ],
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                },
+                animation: {
+                    animateRotate: true,
+                    animateScale: true,
+                    duration: 1000,
+                },
+                onHover: function(event, elements) {
+                    const chartCanvas = event.native.target;
+                    if (elements.length > 0) {
+                        chartCanvas.style.cursor = 'pointer';
+                    } else {
+                        chartCanvas.style.cursor = 'default';
+                    }
+                },
+                onClick: async function (event, elements) {
+                    if (elements.length > 0) {
+                        const clickedIndex = elements[0].index;
+                        const clickedPhenotype = labels[clickedIndex];
+                        showSpinner();
+                        await fetchAndRenderGeneChart(clickedPhenotype);
+                        hideSpinner();
+                    }
+                }
+            }
+        });
+    } catch (error) {
+        console.error('Error fetching or rendering the phenotype chart:', error);
+    }
+}
+
+// Function to fetch and render gene pie chart
+async function fetchAndRenderGeneChart(phenotype) {
+    try {
+        const response = await fetch(`http://localhost/fetch_gene.php?phenotype=${encodeURIComponent(phenotype)}`);
+        const data = await response.json();
+
+        const labels = data.map(item => item.gene);
+        const counts = data.map(item => item.count);
+
+        // Clear previous gene chart if it exists
+        if (geneChartInstance) {
+            geneChartInstance.destroy();
+        }
+
+        const ctx = document.getElementById('genePieChart').getContext('2d');
+        geneChartInstance = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: labels,
+                datasets: [{
+                    data: counts,
+                    backgroundColor: [
+                        '#003f5c','#2f4b7c','#665191','#a05195','#d45087','#f95d6a', '#ff7c43','#ffa600'
+                    ],
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                },
+                animation: {
+                    animateRotate: true,
+                    animateScale: true,
+                    duration: 500,
+                },
+                onHover: function(event, elements) {
+                    const chartCanvas = event.native.target;
+                    // Remove pointer hover for gene chart slices
+                    chartCanvas.style.cursor = 'default';
+                }
+            }
+        });
+
+        // Show gene chart, hide phenotype chart
+        const phenotypeChartContainer = document.getElementById('phenotype-chart');
+        const geneChartContainer = document.getElementById('gene-chart');
+        phenotypeChartContainer.style.display = 'none';
+        geneChartContainer.style.display = 'block';
+
+        // Back button functionality
+        const backButton = document.getElementById('backToPhenotype');
+        backButton.style.cursor = 'pointer'; // Add pointer cursor for the back button
+        backButton.addEventListener('click', function () {
+            // Show phenotype chart, hide gene chart
+            geneChartContainer.style.display = 'none';
+            phenotypeChartContainer.style.display = 'block';
+
+            // Re-render phenotype chart
+            fetchAndRenderPhenotypeChart();
+        });
+
+        // Add pointer cursor to gene names
+        const geneNameElements = document.querySelectorAll('.gene-name');
+        geneNameElements.forEach(name => {
+            name.style.cursor = 'pointer';
+        });
+
+    } catch (error) {
+        console.error('Error fetching or rendering the gene chart:', error);
+    }
+}
+
+// Call the function to initially fetch and render the phenotype chart
+fetchAndRenderPhenotypeChart();
+
+    </script>
+</body>
+</html>

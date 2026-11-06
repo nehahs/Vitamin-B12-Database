@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Details Page</title>
+    <style>
+        body{
+            margin: 0;
+            padding:40px;
+        }
+        #banner {
+            margin: -40px -40px 0 -40px; /* Negate the body padding on all sides */
+               background-color: #090A3A;
+            padding: 10px;
+            display: flex;
+            font-family: 'Lora', serif ;
+     justify-content: space-between;
+             height: 80px; /* Set a fixed height for the banner */
+            
+        }
+       
+.text-left h1 {
+    margin-top: 10px;
+    font-size: 2.5em;  /* Adjust size */
+    font-weight: bold; /* Ensure it's bold */
+    color: #FFFFFF;    /* Text color */
+    margin-bottom: 0px; /* Adjust spacing between h1 and h5 */
+    line-height: 27px;  /* Adjust line height for better spacing */
+    font-weight: normal;
+    padding-left: 17px;
+}
+
+/* Style for h5 */
+.text-left h5 {
+    font-size: 1.2em;  /* Smaller size than h1 */
+    font-weight: normal; /* Make sure it's not bold */
+    color: #FFFFFF;    /* Text color */
+    margin-top: 8px;     /* Remove extra space above h5 */
+    line-height: 1.3;  /* Adjust line height for readability */
+    padding-left: 17px;
+}
+    
+        
+        .text-right {
+    flex: 0 0 auto; /* Do not grow, do not shrink, stay auto size */
+margin-right: 20px; 
+        .text-right img {
+    float: right;
+    width: 65px;
+    height: 65px;
+    margin-right: 10px; /* Adjust margin between logo and text */
+            font-size: 30px;
+}
+        
+        .text {  
+     margin: 0 0 0 0;
+    font-family: 'Lora', serif !important;
+    font-size: 24px;
+    color: #FFFFFF;
+    line-height: 27px;
+}
+.text {
+    float: left;
+    margin: 5px 0 0 8px;
+     text-align: right;
+     margin-right: 10px; /* Adjust margin between logo and text */
+     line-height: 1.3;
+} }
+         
+        .container {
+            margin-top: 20px;
+            border-radius: 10px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            gap: 20px;
+            border-bottom: 3px solid #333;
+            background-color:white;
+            font-family: 'Lora', serif;
+        }
+       /* Mobile view adjustments */
+@media (max-width: 768px) {
+    body {
+        width: 100%; /* Take up full width */
+        max-width: 100%; /* Ensure it doesn't exceed container width */
+        padding: 0px; /* Minimal padding */
+        margin-bottom: 10px;
+        font-family: 'Lora', serif;
+        margin: 20px auto; /* Center the container with minimal side gaps */
+        border-width: 1px; /* Minimal border width */
+        box-sizing: border-box; /* Include padding and border in width */
+    }
+    #banner{
+         width: 100%; /* Take up full width */
+        max-width: 100%; /* Ensure it doesn't exceed container width */
+        padding: 8px; /* Minimal padding */
+        margin: -20px -0 -20px auto; /* Center the container with minimal side gaps */
+        border-width: 1px; /* Minimal border width */
+        box-sizing: border-box; /* Include padding and border in width */
+        margin-bottom: 10px;
+    }
+    /* Adjust side-by-side elements to stack vertically on mobile */
+    .side-by-side > div {
+        flex: 1 1 100%; /* Full width on smaller screens */
+        margin-right: 0; /* Remove right margin */
+        margin-bottom: 10px; /* Space between stacked elements */
+    }
+}
+
+
+        .container h1{
+    margin-top: 10px;
+    font-size: 2.1em;  /* Adjust size */
+    font-weight: bold; /* Ensure it's bold */
+    color: black;    /* Text color */
+    margin-bottom: 0px; /* Adjust spacing between h1 and h5 */
+    line-height: 27px;  /* Adjust line height for better spacing */
+    padding-left: 0px;
+            
+        }
+        
+        
+        .container h5{
+    margin-top: 10px;
+    font-size: 1em;  /* Adjust size */
+    font-weight: bold; /* Ensure it's bold */
+    color: black;    /* Text color */
+    margin-bottom: 0px; /* Adjust spacing between h1 and h5 */
+    line-height: 27px;  /* Adjust line height for better spacing */
+    padding-left: 0px;
+            
+        }
+        .record-box {
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            border-bottom: 3px solid #333;
+        }
+      .publication-title, .pmid-link, .study-parameters-title, .study-parameters-divider {
+            grid-column: span 2;
+        }
+    
+        .publication-title {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .pmid-link {
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+       .record-detail {
+            display: flex;
+          
+            flex: 1 1 45%;
+            padding: 0px;
+            margin: 6px;
+            background-color: none;
+        }
+        .record-key {
+            font-weight: bold;
+            color: #343a40;
+           
+        }
+        .record-value {
+            color: dimgrey;
+            margin-left: 10px;
+        }
+        .top-columns-container {
+            background-color: #e0f7fa;
+            display: flex;
+             flex: 1 1 45%;
+            border-radius: 20px;
+            padding: 20px;
+            margin: 0px;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            border: none;
+            font-size: 17px;
+        }
+        
+.basic-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 10px;
+            grid-column: span 2;
+        }
+         .basic-divider {
+            height: 2px;
+            background-color: #ccc;
+            margin-bottom: 10px;
+            grid-column: span 2;
+        }
+.top-columns-grid {
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+        .phenotype-category-title {
+    font-weight: bold;
+    font-size: 20px;
+    color: darkred;
+    margin-top: 20px;
+    margin-bottom: 5px;
+    grid-column: span 2;
+}
+         .phenotype-category-title-divider {
+            margin-bottom: 10px;
+        }
+
+        .study-parameters-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 10px;
+            grid-column: span 2;
+        }
+        .study-parameters-divider {
+            height: 2px;
+            background-color: #ccc;
+            margin-bottom: 10px;
+            grid-column: span 2;
+        }
+    </style>
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+$(document).ready(function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const searchTerm = urlParams.get('query');
+    const dbsnp = urlParams.get('dbsnp');
+    const phenotypeTrait = urlParams.get('PhenotypeTrait');
+
+    $('title').text(`Details for ${searchTerm}`);
+    $('#selectedSearchTerm').text(searchTerm);
+
+    // Show loading indicator
+    $('#loadingIndicator').show();
+
+ $.getJSON('http://localhost/details.php', { query: dbsnp, column: 'DBSNP id' }, function(data) {
+    console.log("Fetched data:", data);
+    
+    let $topColumnsContainer = $('#topColumnsContainer');
+    let $detailedContainer = $('#detailedResultsContainer');
+    $topColumnsContainer.empty();
+    $detailedContainer.empty();
+
+    if (data && data.length > 0) {
+        let phenotypes = phenotypeTrait.split(',').map(p => p.trim());
+        console.log("Phenotypes to filter:", phenotypes);
+        
+        let filteredData = data.filter(record => {
+            return phenotypes.includes(record['Phenotype/Trait']);
+        });
+
+        console.log("Filtered data:", filteredData);
+        $('#resultCount').text(filteredData.length); 
+        if (filteredData.length > 0) {
+            let recordsByPMID = {};
+            filteredData.forEach(record => {
+                let pmid = record['PMID'];
+                if (!recordsByPMID[pmid]) {
+                    recordsByPMID[pmid] = [];
+                }
+                recordsByPMID[pmid].push(record);
+            });
+
+            let counter = 0;
+            Object.keys(recordsByPMID).forEach((pmid, index) => {
+                let records = recordsByPMID[pmid];
+
+                fetchPublicationTitle(pmid, function(title) {
+                    let $recordBox = $('<div></div>').addClass('record-box');
+                    let pubMedLink = `https://pubmed.ncbi.nlm.nih.gov/${pmid}`;
+                    let $pubMedLink = $('<a></a>').addClass('pmid-link').attr('href', pubMedLink).attr('target', '_blank').text(`PMID: ${pmid}`);
+                    $recordBox.append($pubMedLink);
+
+                    $recordBox.prepend(`<div class="publication-title">${counter + 1}. From Publication: ${title}</div>`);
+
+                    let phenotypes = {};
+                    records.forEach(record => {
+                        let phenotype = record['Phenotype/Trait'];
+                        if (!phenotypes[phenotype]) {
+                            phenotypes[phenotype] = [];
+                        }
+                        phenotypes[phenotype].push(record);
+                    });
+
+                    if (index === 0) {
+                        appendTopColumns($topColumnsContainer, records[0]);
+                    }
+
+                    Object.keys(phenotypes).forEach((phenotype, idx) => {
+                        $recordBox.append(`<div class="phenotype-category-title">Phenotype/Trait: ${phenotype}</div>`);
+                        $recordBox.append('<div class="study-parameters-title">Study Parameters</div><div class="study-parameters-divider"></div>');
+                        appendStudyParameters($recordBox, phenotypes[phenotype]);
+                    });
+
+                    $detailedContainer.append($recordBox);
+                    counter++;
+                });
+            });
+        } else {
+            $detailedContainer.append('<p>No results found.</p>');
+        }
+    } else {
+        $detailedContainer.append('<p>No results found.</p>');
+    }
+});
+
+function appendTopColumns($container, record) {
+    const topColumns = ['DBSNP id', 'G Build', 'Chromosome number', 'Start Position', 'End Position', 'Variant', 'Reference ', 'Alternate', 'Gene', 'Gene Function', 'Other Function', 'Genomic Location', 'Amino Acid Change'];
+    const $topColumnsGrid = $('<div></div>').addClass('top-columns-grid top-columns-container');
+
+    topColumns.forEach(key => {
+        if (record.hasOwnProperty(key)) {
+            let $recordDetail = $('<div></div>').addClass('record-detail');
+            let $recordKey = $('<div></div>').addClass('record-key').text(key + ':');
+            let $recordValue = $('<div></div>').addClass('record-value');
+
+            if (key === 'DBSNP id') {
+                let dbsnpId = record[key];
+                let nihLink = `https://www.ncbi.nlm.nih.gov/snp/${dbsnpId}`;
+                let $nihLink = $('<a></a>').attr('href', nihLink).attr('target', '_blank').text(dbsnpId);
+                $recordValue.append($nihLink);
+            } else if (key === 'Gene') {
+                let geneName = record[key];
+                let geneCardLink = `https://www.genecards.org/cgi-bin/carddisp.pl?gene=${geneName}`;
+                let $geneLink = $('<a></a>').attr('href', geneCardLink).attr('target', '_blank').text(geneName);
+                $recordValue.append($geneLink);
+            } else {
+                $recordValue.text(record[key]);
+            }
+
+            $recordDetail.append($recordKey).append($recordValue);
+            $topColumnsGrid.append($recordDetail);
+        }
+    });
+
+    $container.append($topColumnsGrid);
+}
+
+function appendStudyParameters($container, records) {
+    const studyParameters = ['Ethnicity', 'Geographical Origin', 'Country', 'Study Type', 'Effect Allele', 'Effect Allele Frequency', 'Effect/Beta (SE/CI)', 'Odds Ratio[CI]', 'Pvalue', 'Net Effect', 'Effect description', 'Description','Technique'];
+
+    let studyParamValues = {};
+
+    studyParameters.forEach(key => {
+        records.forEach(record => {
+            if (record.hasOwnProperty(key)) {
+                if (!studyParamValues[key]) {
+                    studyParamValues[key] = new Set();
+                }
+                studyParamValues[key].add(record[key]);
+            }
+        });
+    });
+
+    studyParameters.forEach(key => {
+        if (studyParamValues[key] && studyParamValues[key].size > 0) {
+            let values = Array.from(studyParamValues[key]);
+            let $recordDetail = $('<div></div>').addClass('record-detail');
+            let $recordKey = $('<div></div>').addClass('record-key').text(key + ':');
+            let $recordValue = $('<div></div>').addClass('record-value');
+
+            if (values.length === 1) {
+                $recordValue.text(values[0]);
+            } else {
+                $recordValue.html(values.join(' | '));
+            }
+
+            $recordDetail.append($recordKey).append($recordValue);
+            $container.append($recordDetail);
+        }
+    });
+}
+
+function fetchPublicationTitle(pmid, callback, retries = 3, delayMs = 1000) {
+    const fetchTitle = (retryCount) => {
+        $.ajax({
+            url: `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=pubmed&id=${pmid}&retmode=json`,
+            method: 'GET',
+            success: function(response) {
+                if (response.result && response.result[pmid] && response.result[pmid].title) {
+                    const title = response.result[pmid].title;
+                    callback(title);
+                } else {
+                    if (retryCount > 0) {
+                        setTimeout(() => fetchTitle(retryCount - 1), delayMs);
+                    } else {
+                        callback('Unknown Publication');
+                    }
+                }
+            },
+            error: function() {
+                if (retryCount > 0) {
+                    setTimeout(() => fetchTitle(retryCount - 1), delayMs);
+                } else {
+                    callback('Unknown Publication');
+                }
+            }
+        });
+    };
+    fetchTitle(retries);
+}
+        });
+
+    </script>
+</head>
+ <body>
+       <div id="banner" class="mt-6 mb-6 d-flex justify-content-between align-items-center">
+         <div class="text-left">
+        <h1> CobVar </h1>
+        <h5> A Vitamin B<sub>12</sub> associated genetic variants database</h5>
+          </div>
+        <div class="text-right">
+        <a href="https://www.sjri.res.in/" target="_blank" >
+            <img src="https://sjri.res.in/images/logo.png" alt="Company Logo"  >
+            <p class="text">   St. John's <br>   Research Institute </p>
+        </a>
+    </div>
+       </div>
+  <div class="container">
+    <h1>Details for <span id="selectedSearchTerm"></span></h1>
+    <h3 class="result-count mb-6">No. of results: <span id="resultCount"></span></h3>
+    <div id="topColumnsContainer"></div>
+    <div id="detailedResultsContainer"></div>
+</div>
+     </body>
+</html> 
+
+
